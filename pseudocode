@@ -14,7 +14,7 @@ sum= squareofnum1+squareofnum2
 display sum
 
 #Reverse a number
- declare INTEGER variables i,number,length,reverseofnumber
+ declare INTEGER variables i,number,reverseofnumber
  using loop start with reverseofnumber=0, till number>0 ,DO
    reverseofnumber=reverseofnumber*10 + number%10 
    number=number/10
