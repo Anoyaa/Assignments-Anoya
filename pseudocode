@@ -53,6 +53,7 @@ using loop from i=0 till i<n DO
  print fib
  first= second
  second =fib
+fib=first+second
 increment i by 1 at each iteration
 
 #Tower of Hanoi 
