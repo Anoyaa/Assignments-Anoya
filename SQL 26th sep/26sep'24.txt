@@ -10,6 +10,8 @@ insert into Employees values (4,'John','daniel','marketing ', 60000, '2019-10-09
 insert into Employees values (5,'John','Saniel','marketing ', 75000, '2007-10-09');
 insert into Employees values (6,'Krish','Saniel','IT', 50000, '2010-10-09');
 
+create table students(name nvarchar,rollno int PRIMARY KEY,name nvarchar(30));
+insert into students values (1,N'അഞ്ജലി');
 --Retrieve all employees who work in Sales, Marketing, or IT departments.
 select * from employees where Department in ('cse','marketing','sales');
 
