@@ -47,7 +47,7 @@ select productname from products where patindex('%[0-9]%',productname)>0;
 select CONCAT_WS('-','sql','server','2022');
 
 16. From 'Employees' table with 'FirstName' and 'LastName' columns, create a 'FullName' column.
-select CONCAT_WS(' ',firstname,lastname) from employees;
+select CONCAT_WS(' ',firstname,lastname) as fullname from employees;
 
 17. Join the array ('SQL', 'Server', '2022') with a hyphen as the separator.
 select CONCAT_WS('-','sql','server','2022');
@@ -71,7 +71,7 @@ select right(replicate('0',10)+[product code],10) from products;
 select concat_ws(' ','new'+ 'York city');    
 
 24. From an 'Emails' table, mask the username part of email addresses, showing only the first and last characters.
-
+select concat_ws('',left(emailID,1),replicate('*',charindex('@',emailID)),right(emailID,len(emailID)-charindex('@',emailID)+2)) from employees;
 
 25. Convert the string 'sql server' to uppercase.
 select upper('sql server');
@@ -98,6 +98,7 @@ select ltrim('   SQL Server',' ');
 select ltrim(comments,' ') from comments;
 
 33. Display the current date in the format 'dd-MM-yyyy'.
+select format(getdate(),'dd-MM-yyyy');
 
 
 34. From an 'Orders' table with an 'OrderTotal' column, display the total as a currency with 2 decimal places.
@@ -143,43 +144,81 @@ select datediff(year,getdate(),DateOfBirth)) from employees where datediff(year,
 select datediff(day,'2023-01-01','2023-12-31');
 
 46. From an 'Orders' table, find the average number of days between order date and ship date.
-select avg(
+select avg(datediff(day,orderDate,shipDate)) as averageOfDays from Orders;
 
 47. Extract the month number from the date '2023-09-15'.
+select month('2023-09-15') as month_of_day;
+
 48. From a 'Sales' table, write a query to group total sales by the quarter of the sale date.
+select count(quantity),datename(quarter,saledate) from Sales group by datename(quarter,saledate);
 
 49. Extract the year from the current date.
+select year(getdate());
+
 50. From an 'Employees' table, find all employees hired in the year 2022.
+select * from employees where year(hiredate)=2022;
 
 51. Check if '2023-02-30' is a valid date.
+if try_convert(date,'2023-02-30') is not null begin print 'date is valid' end else begin print'date is invalid' end;
+
 52. Write a query to find all rows in a 'UserInputs' table where the 'EnteredDate' column contains invalid dates.
+select * from UserInputs where try_convert(date,EnteredDate) is null;
 
 53. Find the last day of the current month.
+select eomonth(getdate());
+
 54. From a 'Subscriptions' table, write a query to extend all subscription end dates to the end of their respective months.
+update subscriptions set subscriptionenddate=eomonth(subscriptionenddate);
 
 55. Display the current date and time.
+select getdate();
+
 56. Compare the results of two different methods to get the current timestamp - are they always the same?
+select getdate() as date ,sysdatetime() as systemdate;
+Here,sysdatetime() gives value with higher precision.
+
 
 57. Get the current date and time with higher precision than standard methods.
+select sysdatetime() as precisiondatetime;
+
 58. Write a query to insert the current high-precision timestamp into a 'Logs' table.
+insert into logs(precision_timestamp) values(sysdatetime());
 
 59. Display the current UTC date and time with high precision.
+select SYSDATETIMEOFFSET() as currentdate;
+
+
 60. Calculate the difference in microseconds between the current local time and UTC time.
+select datepart(microsecond,datediff(day,getdate(),sysutcdatetime()));
 
 61. Get the current date, time, and time zone offset.
+select sysdatetimeoffset();
+
 62. From a 'GlobalEvents' table, convert all event times to include time zone offset information.
+alter table globalevents  alter column eventtimes datetimeoffset;
 
 63. Extract the month number from the date '2023-12-25'.
+select month('2023-12-25') as monthofdate;
+
 64. From a 'Sales' table, find the total sales for each month of the previous year.
+ select month(Orderdate),sum(totalsales) from Sales where year(OrderDate)=year(getdate())-1  group by month(OrderDate);
 
 65. Extract the day of the month from '2023-03-15'.
+select month('2023-03-15');
+
 66. Write a query to find all orders from an 'Orders' table that were placed on the 15th day of any month.
+select * from Orders where day(orderDate)=15;
 
 67. Get the name of the month for the date '2023-09-01'.
+select datename(month,'2023-09-01');
+
 68. From an 'Events' table, write a query to display the day of the week (in words) for each event date.
+select datename(weekday,eventdate) from Events;
 
 69. Create a date for Christmas Day 2023.
-70. Write a query to convert separate year, month, and day columns from a 'Dates' table into a single DATE column.
+select cast('2023-12-25' as date) as christmasday2023;
 
+70. Write a query to convert separate year, month, and day columns from a 'Dates' table into a single DATE column.
+select concat_ws('-',year,month,day) as datename from Dates;
 
 
