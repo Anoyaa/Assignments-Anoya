@@ -14,11 +14,7 @@ namespace Employee2
         public static string Name { get; set; }
         public static double Salary { get; set; }
        public string emp_type = "permanent";
-       /* public string emp_type 
-        { get { return emp_type; }
-            set { emp_type = value; }
-        }*/
-        
+       
         public Employee2(int id)
         {
             Id = "emp" + eid.ToString() ;
