@@ -1,0 +1,25 @@
+create database uber;
+use uber;
+create table riders(RiderID int primary key, Ridername varchar(30),RiderAge int,riderContact int,riderAddress varchar(60));
+create table vehicles(VehicleID int primary key,vehiclename varchar(30));
+create table drivers(driverID int primary key,DriverName varchar(30),DriverContact int,vehicleID int,Driveraddress varchar(30),foreign key (VehicleID) references vehicles(VehicleID));                             
+create table trips(tripID int primary key,DriverID int,RiderID int,PickupLocation varchar(60),Droplocation varchar(60), startdate date, enddate date, cost_of_ride float,payment_mode varchar(60),foreign key(DriverID) references drivers(DriverID),foreign key(RiderID) references riders(RiderID));
+
+
+create database Bookmyshow;
+use Bookmyshow;
+create table customers(customerID int primary key,customername varchar(30),customerContact int);
+create table movies(movieID int primary key,moviename varchar(30),releasedate date,lastshowdate date);
+create table theatres(theatreID int primary key,theatrename int,movieid int,foreign key(movieid) references movies(movieID));
+create table bookingDetails(bookingID int primary key,customerID int,theatreID int ,movieID int,DateAndTime datetime,foreign key (customerID) references customers(customerID),foreign key (movieID) references movies(movieID),foreign key (theatreID) references theatres(theatreID));
+
+
+
+
+
+create database amazon;
+use amazon;
+create table customers(customerID INT PRIMARY KEY,CustomerName VARCHAR(100),CustomerContact INT);
+create table products (productID INT PRIMARY KEY, ProductName VARCHAR(200), Price DECIMAL(10, 2),CategoryID INT);
+create table merchants(merchantID INT PRIMARY KEY, MerchantName VARCHAR(30));
+create table orderdetails(orderID INT PRIMARY KEY,CustomerID INT,ProductID INT,merchantID VARCHAR(30),SaleDate DATE, Quantity INT,Price DECIMAL(10, 2),foreign key(customerID) references customers(customerID),foreign key(ProductID) references products(productID),foreign key(merchantID) references merchants(merchantID));
