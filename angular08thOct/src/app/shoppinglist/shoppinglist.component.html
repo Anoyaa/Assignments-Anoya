@@ -1,0 +1,12 @@
+<p>shoppinglist works!</p>
+<div>
+    <input type="text" #newitem placeholder="Add a new item" />
+    <button (click)="addItem(newitem)">Add Item</button>
+    <ul id="itemlist">
+      <li *ngFor="let item of items; let i = index">
+        {{ item }}
+        <button (click)="deleteItem(i)">Delete</button>
+      </li>
+    </ul>
+  </div>
+  
