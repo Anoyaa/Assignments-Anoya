@@ -1,0 +1,6 @@
+<div>
+    <p>No of items: {{ items.length }}</p>
+    <input [(ngModel)]="itemInput" placeholder="Enter item" (keydown)="handleKeydown($event)"/>
+    <button (click)="addItem()">Add Item</button>
+  </div>
+  

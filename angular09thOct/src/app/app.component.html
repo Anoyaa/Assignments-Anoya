@@ -1,0 +1,6 @@
+<div>
+  <h2>My Shopping List</h2>
+
+  <app-add-item [items]="items" (itemsChange)="items = $event"></app-add-item> 
+  <app-view-list [items]="items"></app-view-list>
+</div>
