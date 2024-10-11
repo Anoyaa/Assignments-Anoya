@@ -1,0 +1,10 @@
+<p>main app</p>
+<ul>
+  <li><a routerLink="/alert-me" routerLinkActive="active">Show me alert message</a></li>
+  <li><a routerLink="/google-website-link" routerLinkActive="active"> get google web links</a></li>
+  <li><a [routerLink]="[ '/leap-year']"  routerLinkActive="active">check a year is leap year or not</a></li>
+  <li><a [routerLink]="[ '/country-table' ]" routerLinkActive="active">country & imp details table</a></li>
+  <li><a [routerLink]="[ '/lists-n-nestedlists' ]" routerLinkActive="active">Lists & nested lists</a></li>
+  <li><a [routerLink]="[ '/shopping-list' ]" routerLinkActive="active">Shopping items List</a></li>
+  </ul>
+<router-outlet></router-outlet>
