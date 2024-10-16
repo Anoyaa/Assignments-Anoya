@@ -35,9 +35,11 @@
   </div> 
   <br>
   <br>
-  <label>list of projects active</label>
+  <label>list of projects </label>
   <select formControlName="project">
-    <option *ngFor="let prj of project">{{prj.name|projectPipe:prj.isActive}}</option>
+    <!-- <option *ngFor="let prj of project">{{prj.name|projectPipe:prj.isActive}}</option> -->
+  <option *ngFor="let prj of project|projectPipe:true">{{prj.name}}</option>
+
   </select>
   <button type="submit">Submit</button>
 </form>
