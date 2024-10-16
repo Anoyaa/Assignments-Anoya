@@ -5,36 +5,36 @@ USE uber;
 
 CREATE TABLE riders (
 	RiderID INT PRIMARY KEY
-	,Ridername VARCHAR(30)
+	,RiderName VARCHAR(30)
 	,RiderAge INT
-	,riderContact INT
-	,riderAddress VARCHAR(60)
+	,RiderContact INT
+	,RiderAddress VARCHAR(60)
 	);
 
 CREATE TABLE vehicles (
 	VehicleID INT PRIMARY KEY
-	,vehiclename VARCHAR(30)
+	,VehicleName VARCHAR(30)
 	);
 
 CREATE TABLE drivers (
-	driverID INT PRIMARY KEY
+	DriverID INT PRIMARY KEY
 	,DriverName VARCHAR(30)
 	,DriverContact INT
-	,vehicleID INT
-	,Driveraddress VARCHAR(30)
+	,VehicleID INT
+	,DriverAddress VARCHAR(30)
 	,FOREIGN KEY (VehicleID) REFERENCES vehicles(VehicleID)
 	);
 
 CREATE TABLE trips (
-	tripID INT PRIMARY KEY
+	TripID INT PRIMARY KEY
 	,DriverID INT
 	,RiderID INT
 	,PickupLocation VARCHAR(60)
 	,Droplocation VARCHAR(60)
-	,startdate DATE
-	,enddate DATE
-	,cost_of_ride FLOAT
-	,payment_mode VARCHAR(60)
+	,StartDate DATE
+	,EndDate DATE
+	,Cost_Of_Ride FLOAT
+	,Payment_Mode VARCHAR(60)
 	,FOREIGN KEY (DriverID) REFERENCES drivers(DriverID)
 	,FOREIGN KEY (RiderID) REFERENCES riders(RiderID)
 	);
@@ -47,34 +47,34 @@ CREATE DATABASE Bookmyshow;
 USE Bookmyshow;
 
 CREATE TABLE customers (
-	customerID INT PRIMARY KEY
-	,customername VARCHAR(30)
-	,customerContact INT
+	CustomerID INT PRIMARY KEY
+	,CustomerName VARCHAR(30)
+	,CustomerContact INT
 	);
 
 CREATE TABLE movies (
-	movieID INT PRIMARY KEY
-	,moviename VARCHAR(30)
-	,releasedate DATE
-	,lastshowdate DATE
+	MovieID INT PRIMARY KEY
+	,MovieName VARCHAR(30)
+	,ReleaseDate DATE
+	,LastShowDate DATE
 	);
 
 CREATE TABLE theatres (
-	theatreID INT PRIMARY KEY
-	,theatrename INT
-	,movieid INT
-	,FOREIGN KEY (movieid) REFERENCES movies(movieID)
+	TheatreID INT PRIMARY KEY
+	,TheatreName INT
+	,MovieId INT
+	,FOREIGN KEY (MovieId) REFERENCES movies(MovieID)
 	);
 
 CREATE TABLE bookingDetails (
-	bookingID INT PRIMARY KEY
-	,customerID INT
-	,theatreID INT
-	,movieID INT
+	BookingID INT PRIMARY KEY
+	,CustomerID INT
+	,TheatreID INT
+	,MovieID INT
 	,DateAndTime DATETIME
-	,FOREIGN KEY (customerID) REFERENCES customers(customerID)
-	,FOREIGN KEY (movieID) REFERENCES movies(movieID)
-	,FOREIGN KEY (theatreID) REFERENCES theatres(theatreID)
+	,FOREIGN KEY (CustomerID) REFERENCES customers(CustomerID)
+	,FOREIGN KEY (MovieID) REFERENCES movies(MovieID)
+	,FOREIGN KEY (TheatreID) REFERENCES theatres(TheatreID)
 	);
 
 
@@ -86,32 +86,32 @@ CREATE DATABASE amazon;
 USE amazon;
 
 CREATE TABLE customers (
-	customerID INT PRIMARY KEY
+	CustomerID INT PRIMARY KEY
 	,CustomerName VARCHAR(100)
 	,CustomerContact INT
 	);
 
 CREATE TABLE products (
-	productID INT PRIMARY KEY
+	ProductID INT PRIMARY KEY
 	,ProductName VARCHAR(200)
 	,Price DECIMAL(10, 2)
 	,CategoryID INT
 	);
 
 CREATE TABLE merchants (
-	merchantID INT PRIMARY KEY
+	MerchantID INT PRIMARY KEY
 	,MerchantName VARCHAR(30)
 	);
 
 CREATE TABLE orderdetails (
-	orderID INT PRIMARY KEY
+	OrderID INT PRIMARY KEY
 	,CustomerID INT
 	,ProductID INT
-	,merchantID VARCHAR(30)
+	,MerchantID VARCHAR(30)
 	,SaleDate DATE
 	,Quantity INT
 	,Price DECIMAL(10, 2)
-	,FOREIGN KEY (customerID) REFERENCES customers(customerID)
-	,FOREIGN KEY (ProductID) REFERENCES products(productID)
-	,FOREIGN KEY (merchantID) REFERENCES merchants(merchantID)
+	,FOREIGN KEY (CustomerID) REFERENCES customers(CustomerID)
+	,FOREIGN KEY (ProductID) REFERENCES products(ProductID)
+	,FOREIGN KEY (MerchantID) REFERENCES merchants(MerchantID)
 	);
