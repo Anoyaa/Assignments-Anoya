@@ -1,0 +1,117 @@
+//uber tables database
+CREATE DATABASE uber;
+
+USE uber;
+
+CREATE TABLE riders (
+	RiderID INT PRIMARY KEY
+	,RiderName VARCHAR(30)
+	,RiderAge INT
+	,RiderContact INT
+	,RiderAddress VARCHAR(60)
+	);
+
+CREATE TABLE vehicles (
+	VehicleID INT PRIMARY KEY
+	,VehicleName VARCHAR(30)
+	);
+
+CREATE TABLE drivers (
+	DriverID INT PRIMARY KEY
+	,DriverName VARCHAR(30)
+	,DriverContact INT
+	,VehicleID INT
+	,DriverAddress VARCHAR(30)
+	,FOREIGN KEY (VehicleID) REFERENCES vehicles(VehicleID)
+	);
+
+CREATE TABLE trips (
+	TripID INT PRIMARY KEY
+	,DriverID INT
+	,RiderID INT
+	,PickupLocation VARCHAR(60)
+	,Droplocation VARCHAR(60)
+	,StartDate DATE
+	,EndDate DATE
+	,Cost_Of_Ride FLOAT
+	,Payment_Mode VARCHAR(60)
+	,FOREIGN KEY (DriverID) REFERENCES drivers(DriverID)
+	,FOREIGN KEY (RiderID) REFERENCES riders(RiderID)
+	);
+
+
+
+//bookmyshow tables database
+CREATE DATABASE Bookmyshow;
+
+USE Bookmyshow;
+
+CREATE TABLE customers (
+	CustomerID INT PRIMARY KEY
+	,CustomerName VARCHAR(30)
+	,CustomerContact INT
+	);
+
+CREATE TABLE movies (
+	MovieID INT PRIMARY KEY
+	,MovieName VARCHAR(30)
+	,ReleaseDate DATE
+	,LastShowDate DATE
+	);
+
+CREATE TABLE theatres (
+	TheatreID INT PRIMARY KEY
+	,TheatreName INT
+	,MovieId INT
+	,FOREIGN KEY (MovieId) REFERENCES movies(MovieID)
+	);
+
+CREATE TABLE bookingDetails (
+	BookingID INT PRIMARY KEY
+	,CustomerID INT
+	,TheatreID INT
+	,MovieID INT
+	,DateAndTime DATETIME
+	,FOREIGN KEY (CustomerID) REFERENCES customers(CustomerID)
+	,FOREIGN KEY (MovieID) REFERENCES movies(MovieID)
+	,FOREIGN KEY (TheatreID) REFERENCES theatres(TheatreID)
+	);
+
+
+
+
+//amazon tables database
+CREATE DATABASE amazon;
+
+USE amazon;
+
+CREATE TABLE customers (
+	CustomerID INT PRIMARY KEY
+	,CustomerName VARCHAR(100)
+	,CustomerContact INT
+	);
+
+CREATE TABLE products (
+	ProductID INT PRIMARY KEY
+	,ProductName VARCHAR(200)
+	,Price DECIMAL(10, 2)
+	,CategoryID INT
+	);
+
+CREATE TABLE merchants (
+	MerchantID INT PRIMARY KEY
+	,MerchantName VARCHAR(30)
+	);
+
+CREATE TABLE orderdetails (
+	OrderID INT PRIMARY KEY
+	,CustomerID INT
+	,ProductID INT
+	,MerchantID VARCHAR(30)
+	,SaleDate DATE
+	,Quantity INT
+	,Price DECIMAL(10, 2)
+	,FOREIGN KEY (CustomerID) REFERENCES customers(CustomerID)
+	,FOREIGN KEY (ProductID) REFERENCES products(ProductID)
+	,FOREIGN KEY (MerchantID) REFERENCES merchants(MerchantID)
+	);
