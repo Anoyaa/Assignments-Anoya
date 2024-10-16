@@ -1,0 +1,48 @@
+<div>
+  <h2>Employee Form:</h2>
+</div>
+<br>
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <label>First Name *:</label>
+  <input formControlName="firstName"/>
+  <div *ngIf="employeeForm.get('firstName')?.invalid && formSubmitted">First Name is required.</div>
+
+  <label>   Last Name:</label>
+  <input formControlName="lastName" />
+<br>
+<br>
+  <label>Email *:</label>
+  <input formControlName="email" />
+  <div *ngIf="employeeForm.get('email')?.invalid && formSubmitted">Enter a valid Email /it is a Mandatory field.</div>
+<br>
+<br>
+  <label>Phone Number *:</label>
+  <input type="number" formControlName="phone" />
+  <div *ngIf="employeeForm.get('phone')?.invalid && formSubmitted">Mandatory field with valid Phone Number (exactly 10 digits).</div>
+<br>
+<br>
+  <div formGroupName="address">
+    <label>Address:</label>
+      <label>Building-</label>
+      <input formControlName="building" />
+    <br>
+    
+      <label>Street name-</label>
+      <input formControlName="streetName" />
+    <br>
+      <label>City -</label>
+      <input formControlName="city" />
+  </div> 
+  <br>
+  <br>
+  <button type="submit">Submit</button>
+</form>
+<div *ngIf="formSubmitted">
+  <h2>Employee Details:</h2>
+  <p>Name: {{ employeeDetails.firstName }} {{ employeeDetails.lastName }}</p>
+  <p>Email: {{ employeeDetails.email }}</p>
+  <p>Phone Number: {{ employeeDetails.phone }}</p>
+  <p>Building No.: {{ employeeDetails.address.building }}</p>
+  <p>Street name: {{ employeeDetails.address.streetName }}</p>
+  <p>City: {{ employeeDetails.address.city }}</p>
+</div>
