@@ -1,0 +1,14 @@
+C:\Users\anoya.a\source\repos\Card management lib\obj\Debug\net6.0\Card management lib.csproj.AssemblyReference.cache
+C:\Users\anoya.a\source\repos\Card management lib\obj\Debug\net6.0\Card management lib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\anoya.a\source\repos\Card management lib\obj\Debug\net6.0\Card management lib.AssemblyInfoInputs.cache
+C:\Users\anoya.a\source\repos\Card management lib\obj\Debug\net6.0\Card management lib.AssemblyInfo.cs
+C:\Users\anoya.a\source\repos\Card management lib\obj\Debug\net6.0\Card management lib.csproj.CoreCompileInputs.cache
+C:\Users\anoya.a\source\repos\Card management lib\bin\Debug\net6.0\Card management lib.deps.json
+C:\Users\anoya.a\source\repos\Card management lib\bin\Debug\net6.0\Card management lib.runtimeconfig.json
+C:\Users\anoya.a\source\repos\Card management lib\bin\Debug\net6.0\Card management lib.dll
+C:\Users\anoya.a\source\repos\Card management lib\bin\Debug\net6.0\Card management lib.pdb
+C:\Users\anoya.a\source\repos\Card management lib\obj\Debug\net6.0\Card management lib.dll
+C:\Users\anoya.a\source\repos\Card management lib\obj\Debug\net6.0\refint\Card management lib.dll
+C:\Users\anoya.a\source\repos\Card management lib\obj\Debug\net6.0\Card management lib.pdb
+C:\Users\anoya.a\source\repos\Card management lib\obj\Debug\net6.0\Card management lib.genruntimeconfig.cache
+C:\Users\anoya.a\source\repos\Card management lib\obj\Debug\net6.0\ref\Card management lib.dll
