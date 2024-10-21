@@ -1,0 +1,90 @@
+CREATE DATABASE Food_Delivery_Service_Final;
+USE Food_Delivery_Service_Final;
+CREATE Table Customers(
+                        CustomerID int PRIMARY KEY,
+                        CustomerName varchar(30),
+					 	CustomerContact int,
+						CustomerAddress varchar(30)
+                       );
+CREATE TABLE Restaurants(
+                         RestaurantID int PRIMARY KEY,
+                         RestaurantName varchar(30),
+						  RestaurantAddress varchar(30)
+                         );
+
+CREATE TABLE Categories (
+                           CategoryID int PRIMARY KEY,
+                           CategoryName varchar(30),
+						     RestaurantID int,
+						     FOREIGN KEY(RestaurantID) REFERENCES Restaurants(RestaurantID)
+						 );
+
+CREATE TABLE MenuItemProducts (
+		                      ProductID int PRIMARY KEY,
+								ProductName varchar(30),
+								CategoryID int,
+								RestaurantID int,
+							    FOREIGN KEY(RestaurantID) REFERENCES Restaurants(RestaurantID),
+							    FOREIGN KEY(CategoryID) REFERENCES Categories(CategoryID)
+                            );
+      				
+
+CREATE TABLE DeliveryPartners(
+                               DeliveryPartnerID int PRIMARY KEY,
+							   DeliveryPartnerName varchar(30),
+							   DeliveryPartnerContact int,
+							   DeliveryPartnerAddress varchar(30)
+							   );
+
+CREATE TABLE Promotions(
+                          PromotionID int PRIMARY KEY, 
+						  CouponCode varchar(60),
+						  ValidityTillDate date,
+						  CouponDescription varchar(30)
+						  );
+
+CREATE TABLE CustomizedAddOns(
+                                AddOnID int PRIMARY KEY,
+								AddOnItemID int,
+							    AddOnsPrice decimal(10,2),
+							   FOREIGN KEY(AddOnItemID) REFERENCES MenuItemProducts(ProductID)
+                              );
+
+CREATE TABLE Orders(
+                    OrderID int PRIMARY KEY,
+                    CustomerID int,
+					RestaurantID int,
+					ProductID int,
+                    Quantity int,
+					AddOnID int,
+					DeliveryPartnerID int,
+					OrderDate date,
+					Amount decimal(10,2),
+					DeliveryCharges decimal(10,2),
+					PromotionID int,
+					FOREIGN KEY(CustomerID) REFERENCES Customers(CustomerID),
+				    FOREIGN KEY(RestaurantID) REFERENCES Restaurants(RestaurantID),
+				    FOREIGN KEY(ProductID) REFERENCES MenuItemProducts(ProductID),
+					FOREIGN KEY(AddOnID) REFERENCES CustomizedAddOns(AddOnID),
+					FOREIGN KEY(DeliveryPartnerID) REFERENCES DeliveryPartners(DeliveryPartnerID),
+					FOREIGN KEY(PromotionID) REFERENCES Promotions(PromotionID)
+                    );
+
+CREATE TABLE Reviews_and_Ratings(
+                                ReviewID int PRIMARY KEY,
+								OrderID int,
+								Ratings_On_Five decimal(5,2),
+								ReviewDescription varchar(30),
+							    FOREIGN KEY(OrderID) REFERENCES Orders(OrderID)
+                               );
+
+CREATE TABLE LoyaltyMembership(
+                               LoyaltyID int PRIMARY KEY,
+							   CustomerID int ,
+							   MembershipStartDate date,
+							   LoyaltyPoints int,
+							   ValidityTill date,
+							   FOREIGN KEY(CustomerID) REFERENCES Customers(CustomerID)
+							   );
+
+
