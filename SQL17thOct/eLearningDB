@@ -60,15 +60,17 @@ CREATE TABLE Certficates(
 						  );
 
 CREATE TABLE Progress(
-	                   ProgressID int PRIMARY KEY,
-                       StudentID int,
-					   CourseID int,
-			           CurrentLessonID int,
+				              ProgressID int PRIMARY KEY,
+			                       StudentID int,
+			                      InstructorID int,
+				              CourseID int,
+				              CurrentLessonID int,
 					   CourseStartDate date,
 					   NumberOfLessonCompleted int,
 					   FOREIGN KEY(StudentID) REFERENCES Students(StudentID),
 					   FOREIGN KEY(CourseID) REFERENCES Courses(CourseID),
 					   FOREIGN KEY(CurrentLessonID) REFERENCES Lessons(LessonID),
+                                           FOREIGN KEY(InstructorID) REFERENCES Instructors(InstructorID)
                      );
 
 CREATE TABLE AssignmentEvaluation(
