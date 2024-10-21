@@ -1,0 +1,112 @@
+CREATE DATABASE OnlineLearningPlatform;
+USE OnlineLearningPlatform;
+
+CREATE TABLE Students(
+                       StudentID int PRIMARY KEY,
+					   StudentName varchar(30),
+					   StudentContact int,
+                       StudentAge int,
+					   StudentMailID varchar(30)
+                      );
+
+CREATE TABLE Instructors(
+                         InstructorID int PRIMARY KEY,
+						 InstructorName varchar(30)
+						 );
+
+CREATE TABLE Courses(
+                      CourseID int PRIMARY KEY,
+					  CourseName varchar(30),
+					  CourseDurationInMonths int
+					  );
+CREATE TABLE Lessons(
+                      LessonID int PRIMARY KEY,
+					  CourseID int,
+					  ExpectedDurationInAvg int,
+					  FOREIGN KEY(CourseID) REFERENCES Courses(CourseID)
+					  );
+
+CREATE TABLE Quizzes(
+                      QuizID int PRIMARY KEY,
+					  CourseID int,
+					  LessonID int,
+					  DifficultyLevel varchar(30),
+					  FOREIGN KEY(LessonID) REFERENCES Lessons(LessonID),
+                      FOREIGN KEY(CourseID) REFERENCES Courses(CourseID)
+                    );
+
+CREATE TABLE Assignments(
+                          AssignmentID int PRIMARY KEY,
+						  StudentID int,
+						  CourseID int,
+						  LessonID int,
+						  InstructorID int,
+						  AssignedDate date,
+						  DueDate date,
+						  AssignmentStatus varchar(30),
+						  FOREIGN KEY(CourseID) REFERENCES Courses(CourseID),
+				          FOREIGN KEY(LessonID) REFERENCES Lessons(LessonID),
+						  FOREIGN KEY(StudentID) REFERENCES Students(StudentID),
+						  FOREIGN KEY(InstructorID) REFERENCES Instructors(InstructorID)
+						  );
+
+CREATE TABLE Certficates(
+                          CertificateID int PRIMARY KEY,
+						  StudentID int,
+						  CourseID int,
+						  IssueDate date,
+						  FOREIGN KEY(StudentID) REFERENCES Students(StudentID),
+						  FOREIGN KEY(CourseID) REFERENCES Courses(CourseID)
+						  );
+
+CREATE TABLE Progress(
+				              ProgressID int PRIMARY KEY,
+			                       StudentID int,
+			                      InstructorID int,
+				              CourseID int,
+				              CurrentLessonID int,
+					   CourseStartDate date,
+					   NumberOfLessonCompleted int,
+					   FOREIGN KEY(StudentID) REFERENCES Students(StudentID),
+					   FOREIGN KEY(CourseID) REFERENCES Courses(CourseID),
+					   FOREIGN KEY(CurrentLessonID) REFERENCES Lessons(LessonID),
+                                           FOREIGN KEY(InstructorID) REFERENCES Instructors(InstructorID)
+                     );
+
+CREATE TABLE AssignmentEvaluation(
+	                               AssignmentEvaluationID int PRIMARY KEY,
+	                               StudentID int,
+                                   AssignmentID int,
+                                   GradingMethodName varchar(30),
+                                  FOREIGN KEY(StudentID) REFERENCES Students(StudentID),
+								  FOREIGN KEY(AssignmentID) REFERENCES Assignments(AssignmentID),
+                                   );
+
+CREATE TABLE InstructorReview(
+							    IReviewID int PRIMARY KEY,
+								AssignmentEvaluationID int,
+								ReviewerInstructorID int,
+								ScoreAchieved decimal(5,2),
+								TotalScore decimal(5,2),
+								FOREIGN KEY(ReviewerInstructorID) REFERENCES Instructors(InstructorID),
+								FOREIGN KEY(AssignmentEvaluationID) REFERENCES AssignmentEvaluation(AssignmentEvaluationID)
+                  			   );
+
+CREATE TABLE PeerReview(
+							    PReviewID int PRIMARY KEY,
+								AssignmentEvaluationID int,
+								ReviewerStudentID int,
+								ScoreAchieved decimal(5,2),
+								TotalScore decimal(5,2),
+								FOREIGN KEY(AssignmentEvaluationID) REFERENCES AssignmentEvaluation(AssignmentEvaluationID),
+								FOREIGN KEY(ReviewerStudentID) REFERENCES Students(StudentID)
+                  			   );
+
+
+CREATE TABLE AutoReview(
+							    AReviewID int PRIMARY KEY,
+								AssignmentEvaluationID int,
+								ScoreAchieved decimal(5,2),
+								TotalScore decimal(5,2),
+								FOREIGN KEY(AssignmentEvaluationID) REFERENCES AssignmentEvaluation(AssignmentEvaluationID),
+                  			   );
